@@ -1,0 +1,17 @@
+[package]
+name = "frontend"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+common = { path = "../common" }
+console_error_panic_hook = "0.1.7"
+leaflet = "0.2.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+wasm-bindgen = { version = "0.2", features = ["serde-serialize"] }
+wasm-bindgen-futures = "0.4.30"
+web-sys = { version = "0.3.4", features = ["Headers", "Location", "Request", "RequestInit", "RequestMode", "Response", "Window"] }

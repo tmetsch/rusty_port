@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+skinparam monochrome true
+header overview
+
+cloud "data source" as src
+
+frame "scale out deployment" {
+  agent dataport
+  interface HTTP as dpep
+  dataport -left- dpep
+  agent datatug #fefefe
+  agent local_cache #fefefe
+  interface HTTP as lcep
+  local_cache -left- lcep
+  agent analytics #fefefe
+  interface HTTP as aep
+  analytics -left- aep
+  agent "path optimizer\nfunction" as po #fefefe
+  interface HTTP as poep
+  po -left- poep
+  database data #fefefe
+  dataport -- data
+  datatug -- data
+  datatug .up. src
+}
+
+frame client {
+  frame browser {
+    agent frontend
+    frontend -down-> dpep
+    frontend .down.> lcep
+  }
+  frame loadgen {
+    agent generator #fefefe
+    generator -down-> dpep
+  }
+}
+
+@enduml
