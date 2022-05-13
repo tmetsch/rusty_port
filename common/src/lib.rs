@@ -39,6 +39,19 @@ pub struct MMSIList {
     pub vessels: Vec<i32>,
 }
 
+/// Defines the input to the path simplification function.
+#[derive(serde::Serialize, serde::Deserialize, Clone)]
+pub struct SimplifyIn {
+    pub vessel: Vessel,
+    pub radius: f64,
+}
+
+/// Defines the output to the path simplification function.
+#[derive(serde::Serialize, serde::Deserialize, Clone)]
+pub struct SimplifyOut {
+    pub path: Vec<Coordinate>,
+}
+
 /// Calculates distance between two coordinates - based on: <https://en.wikipedia.org/wiki/Haversine_formula>.
 pub fn distance(src_lat: f64, src_long: f64, trg_lat: f64, trg_long: f64) -> f64 {
     let src_lat_rad = src_lat.to_radians();

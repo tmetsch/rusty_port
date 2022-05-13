@@ -8,17 +8,17 @@ cloud "data source" as src
 frame "scale out deployment" {
   agent dataport
   interface HTTP as dpep
-  dataport -left- dpep
+  dataport -up- dpep
   agent datatug #fefefe
   agent local_cache #fefefe
   interface HTTP as lcep
-  local_cache -left- lcep
+  local_cache -up- lcep
   agent analytics #fefefe
   interface HTTP as aep
-  analytics -left- aep
-  agent "path optimizer\nfunction" as po #fefefe
+  analytics -up- aep
+  agent "path optimizer\nfunction" as po
   interface HTTP as poep
-  po -left- poep
+  po -up- poep
   database data #fefefe
   dataport -- data
   datatug -- data
